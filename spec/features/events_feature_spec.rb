@@ -42,6 +42,30 @@ feature 'events' do
      expect(page).to have_content 'Yoga'
      expect(current_path).to eq "/events/#{yoga.id}"
     end
-
   end
+
+  context 'editing restaurants' do
+    let!(:yoga){Event.create(name:'Yoga')}
+
+    scenario 'let a user edit an event' do
+     visit '/events'
+     click_link 'Edit Yoga'
+     fill_in 'Name', with: 'Hot Yoga'
+     click_button 'Update Event'
+     expect(page).to have_content 'Hot Yoga'
+     expect(current_path).to eq '/events'
+    end
+  end
+
+  context 'deleting restaurants' do
+    before {Restaurant.create name: 'Yoga'}
+
+    scenario 'removes a event when a user clicks a delete link' do
+      visit '/events'
+      click_link 'Delete Yoga'
+      expect(page).not_to have_content 'Yoga'
+      expect(page).to have_content 'event deleted successfully'
+    end
+  end
+
 end

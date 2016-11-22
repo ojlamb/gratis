@@ -7,15 +7,33 @@ class EventsController < ApplicationController
   end
 
   def create
-    Event.create(restaurant_params)
+    Event.create(event_params)
     redirect_to '/events'
   end
 
-  def restaurant_params
+  def event_params
     params.require(:event).permit(:name)
   end
 
   def show
     @event = Event.find(params[:id])
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+
+    redirect_to '/events'
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash[:notice] = 'Event deleted successfully'
+    redirect_to '/events'
   end
 end
