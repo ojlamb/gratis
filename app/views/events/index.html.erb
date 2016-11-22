@@ -1,0 +1,9 @@
+<% if Event.all.any? %>
+  <% Event.all.each do |event| %>
+    <%= link_to event.name, event_path(event) %>
+  <% end %>
+<% else %>
+  <h1>No events yet</h1>
+<% end %>
+
+<a href="<%=new_event_path%>">Add an Event</a>
