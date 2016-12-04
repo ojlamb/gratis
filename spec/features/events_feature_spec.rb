@@ -9,7 +9,7 @@ feature 'events' do
     end
   end
 
-  context 'restaurants have been added' do
+  context 'events have been added' do
     before do
       Event.create(name: 'Yoga')
     end
@@ -32,7 +32,7 @@ feature 'events' do
     end
   end
 
-  context 'viewing restaurants' do
+  context 'viewing events' do
 
     let!(:yoga){Event.create(name:'Yoga')}
 
@@ -44,7 +44,7 @@ feature 'events' do
     end
   end
 
-  context 'editing restaurants' do
+  context 'editing events' do
     let!(:yoga){Event.create(name:'Yoga')}
 
     scenario 'let a user edit an event' do
@@ -57,14 +57,14 @@ feature 'events' do
     end
   end
 
-  context 'deleting restaurants' do
-    before {Restaurant.create name: 'Yoga'}
+  context 'deleting events' do
+    before {Event.create name: 'Yoga'}
 
     scenario 'removes a event when a user clicks a delete link' do
       visit '/events'
       click_link 'Delete Yoga'
       expect(page).not_to have_content 'Yoga'
-      expect(page).to have_content 'event deleted successfully'
+      expect(page).to have_content 'Event Deleted Successfully'
     end
   end
 
