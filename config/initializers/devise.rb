@@ -240,8 +240,6 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   require "omniauth-facebook"
-  p Rails.application.secrets[:facebook_app_id]
-  p Rails.application.secrets[:facebook_app_secret]
   config.omniauth :facebook, Rails.application.secrets[:facebook_app_id], Rails.application.secrets[:facebook_app_secret], scope: 'email', info_fields: 'email, name', secure_image_url: true, image_size: 'large'
 
   # ==> Warden configuration

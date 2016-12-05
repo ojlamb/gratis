@@ -11,7 +11,7 @@ require 'capybara/rails'
 require 'factory_girl_rails'
 require 'shoulda'
 require_relative './support/database_cleaner'
-# require_relative './support/helpers'
+require_relative './support/helpers'
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
@@ -44,6 +44,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
 
   # config.include FeatureHelpers
+
+  config.include FeatureHelpers
 
   config.include FactoryGirl::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
